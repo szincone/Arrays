@@ -26,6 +26,7 @@ Array *create_array(int capacity)
   arr_var->capacity = capacity;
   arr_var->count = 0;
   // Allocate memory for elements
+  arr_var->elements = malloc(capacity * sizeof(char *));
   return arr_var;
 }
 
@@ -69,10 +70,17 @@ void resize_array(Array *arr)
  *****/
 char *arr_read(Array *arr, int index)
 {
-
+  char err_string[] = "Cannot find element in array";
   // Throw an error if the index is greater or equal to than the current count
-
+  if (index > arr->count)
+  {
+    return err_string;
+  }
   // Otherwise, return the element at the given index
+  else
+  {
+    return arr->elements[index];
+  }
 }
 
 /*****
