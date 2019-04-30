@@ -24,9 +24,9 @@ Array *create_array(int capacity)
   Array *arr_var = malloc(sizeof(Array));
   // Set initial values for capacity and count
   arr_var->capacity = capacity;
-  printf("THE CAPACITY IS %d\n", arr_var->capacity);
+  // printf("THE CAPACITY IS %d\n", arr_var->capacity);
   arr_var->count = 0;
-  printf("THE COUNT IS %d\n", arr_var->count);
+  // printf("THE COUNT IS %d\n", arr_var->count);
   // Allocate memory for elements
   arr_var->elements = malloc(capacity * sizeof(char *));
   return arr_var;
@@ -112,8 +112,15 @@ void arr_append(Array *arr, char *element)
   // or throw an error if resize isn't implemented yet.
 
   // Copy the element and add it to the end of the array
-
+  char *ele_copy;
+  ele_copy = element;
+  int cur_index = arr->count;
+  // printf("CURR INDEX BEFORE%d\n", cur_index);
+  arr->elements[cur_index] = ele_copy;
+  cur_index = (arr->count + 1) % arr->capacity;
+  // printf("CURR INDEX AFTER%d\n", cur_index);
   // Increment count by 1
+  arr->count++;
 }
 
 /*****
