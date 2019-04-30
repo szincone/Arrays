@@ -72,7 +72,7 @@ void resize_array(Array *arr)
  *****/
 char *arr_read(Array *arr, int index)
 {
-  char err_string[] = "Cannot find element in array";
+  char err_string[] = "Insert value failed";
   // Throw an error if the index is greater or equal to than the current count
   if (index > arr->count)
   {
@@ -81,6 +81,7 @@ char *arr_read(Array *arr, int index)
   // Otherwise, return the element at the given index
   else
   {
+    printf("ELEMENT %d\n", arr->elements[index]);
     return arr->elements[index];
   }
 }
@@ -90,16 +91,25 @@ char *arr_read(Array *arr, int index)
  *****/
 void arr_insert(Array *arr, char *element, int index)
 {
-
+  char err_string[] = "Index out of range";
   // Throw an error if the index is greater than the current count
-
+  if (index > arr->count)
+  {
+    return err_string;
+  }
   // Resize the array if the number of elements is over capacity
-
+  // if arr_copy->count > arr_copy->capacity we gonna resize_arr()
   // Move every element after the insert index to the right one position
-
+  for (int i = 0; i < arr->count; i++)
+  {
+    arr->elements[i] = arr->elements[i - 1];
+  }
   // Copy the element and add it to the array
-
+  char *ele_copy;
+  ele_copy = element;
+  arr->elements[index] = ele_copy;
   // Increment count by 1
+  arr->count += 1;
 }
 
 /*****
