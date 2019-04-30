@@ -86,6 +86,7 @@ char *arr_read(Array *arr, int index)
   else
   {
     printf("ELEMENT %d\n", arr->elements[index]);
+    // printf("ELEMENT %d\n", arr->elements[index]);
     return arr->elements[index];
   }
 }
@@ -110,7 +111,7 @@ void arr_insert(Array *arr, char *element, int index)
   // Move every element after the insert index to the right one position
   for (int i = 0; i < arr->count; i++)
   {
-    arr->elements[i] = arr->elements[i - 1];
+    arr->elements[i + 1] = arr->elements[i];
   }
   // Copy the element and add it to the array
   char *ele_copy;
