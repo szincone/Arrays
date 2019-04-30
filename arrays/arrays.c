@@ -24,7 +24,9 @@ Array *create_array(int capacity)
   Array *arr_var = malloc(sizeof(Array));
   // Set initial values for capacity and count
   arr_var->capacity = capacity;
+  printf("THE CAPACITY IS %d\n", arr_var->capacity);
   arr_var->count = 0;
+  printf("THE COUNT IS %d\n", arr_var->count);
   // Allocate memory for elements
   arr_var->elements = malloc(capacity * sizeof(char *));
   return arr_var;
@@ -35,10 +37,10 @@ Array *create_array(int capacity)
  *****/
 void destroy_array(Array *arr)
 {
-
   // Free all elements
-
+  free(arr->elements);
   // Free array
+  free(arr);
 }
 
 /*****
