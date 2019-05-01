@@ -78,14 +78,16 @@ char *arr_read(Array *arr, int index)
 {
   char err_string[] = "Insert value failed";
   // Throw an error if the index is greater or equal to than the current count
-  if (index > arr->count)
+  if (index >= arr->count)
   {
-    return err_string;
+    return NULL;
   }
   // Otherwise, return the element at the given index
   else
   {
-    printf("ELEMENT %d\n", arr->elements[index]);
+    printf("ELEMENT %s\n", arr->elements[index]);
+    printf("INDEX %d\n", index);
+    printf("COUNT %d\n", arr->count);
     // printf("ELEMENT %d\n", arr->elements[index]);
     return arr->elements[index];
   }
@@ -109,7 +111,7 @@ void arr_insert(Array *arr, char *element, int index)
     resize_array(arr);
   }
   // Move every element after the insert index to the right one position
-  for (int i = 0; i < arr->count; i++)
+  for (int i = index; i < arr->count; i++)
   {
     arr->elements[i + 1] = arr->elements[i];
   }
@@ -150,13 +152,27 @@ void arr_append(Array *arr, char *element)
  *****/
 void arr_remove(Array *arr, char *element)
 {
-
+  char *element_copy;
+  element_copy = element;
+  int index = 0;
   // Search for the first occurence of the element and remove it.
   // Don't forget to free its memory!
-
+  for (int i = 0; i < arr->count; i++)
+  {
+    if (arr->elements[i] == element_copy)
+    {
+      index = i;
+      arr->elements[index] = 0;
+      free(arr->elements[index]);
+    }
+  }
   // Shift over every element after the removed element to the left one position
-
+  for (int i = index; i < arr->count; i++)
+  {
+    arr->elements[index] = arr->elements[index + 1];
+  }
   // Decrement count by 1
+  arr->count -= 1;
 }
 
 /*****
