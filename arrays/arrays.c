@@ -85,9 +85,9 @@ char *arr_read(Array *arr, int index)
   // Otherwise, return the element at the given index
   else
   {
-    printf("ELEMENT %s\n", arr->elements[index]);
-    printf("INDEX %d\n", index);
-    printf("COUNT %d\n", arr->count);
+    // printf("ELEMENT %s\n", arr->elements[index]);
+    // printf("INDEX %d\n", index);
+    // printf("COUNT %d\n", arr->count);
     // printf("ELEMENT %d\n", arr->elements[index]);
     return arr->elements[index];
   }
